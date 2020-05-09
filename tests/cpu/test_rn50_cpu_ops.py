@@ -55,8 +55,7 @@ import unittest
 from functools import reduce
 
 import torch
-import _torch_ipex as ipex
-ipex._initialize_aten_bindings()
+import intel_pytorch_extension as ipex
 
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
@@ -942,5 +941,5 @@ class TestConv(TestCase):
         self.assertEqual(inputs_dpcpp.grad.to('cpu'), inputs_cpu.grad, prec=0.0)
 
 if __name__ == '__main__':
-    ipex.enable_auto_dnnl()
+    ipex.core.enable_auto_dnnl()
     test = unittest.main()
