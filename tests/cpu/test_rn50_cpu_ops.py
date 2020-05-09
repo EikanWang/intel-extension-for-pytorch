@@ -941,5 +941,5 @@ class TestConv(TestCase):
         self.assertEqual(inputs_dpcpp.grad.to('cpu'), inputs_cpu.grad, prec=0.0)
 
 if __name__ == '__main__':
-    ipex.core.enable_auto_dnnl()
+    # ipex.core.enable_auto_dnnl()
     test = unittest.main()
