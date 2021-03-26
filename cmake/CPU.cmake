@@ -173,6 +173,7 @@ pybind11_add_module(${PLUGIN_NAME} SHARED ${DPCPP_SRCS})
 target_link_libraries(${PLUGIN_NAME} PRIVATE ${DPCPP_THIRD_PARTY_ROOT}/xsmm/lib/libxsmm.a)
 
 #link_directories(${PYTORCH_INSTALL_DIR}/lib)
+target_link_libraries(${PLUGIN_NAME} PUBLIC ${PYTORCH_INSTALL_DIR}/lib/libtorch.so)
 target_link_libraries(${PLUGIN_NAME} PUBLIC ${PYTORCH_INSTALL_DIR}/lib/libtorch_cpu.so)
 target_link_libraries(${PLUGIN_NAME} PUBLIC ${PYTORCH_INSTALL_DIR}/lib/libc10.so)
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <ATen/Tensor.h>
+#include <c10/util/Exception.h>
+
 #include "cpu/dil/dil.hpp"
 
 namespace torch_ipex {
@@ -52,9 +54,8 @@ void set_ipex_func_status(IPEXFuncStatus ipex_fun_status);
 #define IPEX_CHECK(cond, ...)                                                  \
   if (!(cond)) {                                                               \
     throw std::runtime_error(                                                  \
-      c10::detail::if_empty_then(                                              \
-        c10::str(__VA_ARGS__),                                                 \
-        "Expected " #cond " to be true, but got false."));                     \
+      c10::detail::torchCheckMsgImpl(                                          \
+        "Expected " #cond " to be true, but got false.", ##__VA_ARGS__));      \
   }
 #else
 // quick path of IPEX_CHECK without reporting message
